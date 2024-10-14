@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SrDeL</title>
+        <style>
+            body{
+                background-color: black;
+            }
+            .content { 
+                color: white;
+            }
+            .all{    
+                margin-top: 10px;
+          display: flex;
+          margin: 1
+          }  
+          .notLine {
+            text-decoration: none; /* Убираем подчеркивание */
+        
+         }
+        
+        a{
+            color: rgb(255, 255, 255);
+         }
+         .brd{
+        margin-left: 70px ;    
+        border: 10px double white ;
+        width :700px;
+    } 
+        </style>
+    </head>
+<body>
+    <a href="index.html"><img src="folder/img/baner1.jpg" width="200" height="100" ></a>
+<div class="all">  
+ <div class="brd">  
+ <div class="content" style="margin-left: 45px;">
+      <h1 style="color: orange;">5 СПОСОБОВ БЫТЬ ВЫШЕ</h1>
+
+      <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+<embed src="folder\video\фвцыуакпе.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="600" height="600"></embed>
+     <h3>опубликовано:14.10.24</h3>
+     <h2><a target="_blank" href="https://youtube.com/shorts/OzUChEuNb5E?si=OzeEf9VQ8t_oUO-o">посмотри на ютубе</a> </h2>
+   </div>
+</div>
+   <div class=content>
+      <h1 style="margin-left: 70px;">Остальные видео:</h1>
+      <div >
+          <a class="notLine" href = "https://signiordel.github.io/SrDeL.io/Humanizator.html">
+           <div class="all">
+              <img src="folder/img/mq2.webp" alt="mp2" width="400" height="200">
+               <h2>Хуманизатор</h2>
+            </div>
+           </a>    
+        </div>
+        <div>
+          <a class="notLine" href = "https://signiordel.github.io/SrDeL.io/donopendor.html">
+           <div class="all">
+              <img src="folder/img/oar2.webp" alt="mp2" width="400" height="200">
+              <h2>НЕ открывай эту дверь</h2>
+            </div>
+           </a>    
+        </div>
+    </div>
+</div> 
+</div>   
+</body>
+</html>
