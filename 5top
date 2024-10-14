@@ -32,7 +32,7 @@
         </style>
     </head>
 <body>
-    <a href="index.html"><img src="folder/img/baner1.jpg" width="200" height="100" ></a>
+    <a href="index.html"><img src="img/baner1.jpg" width="200" height="100" ></a>
 <div class="all">  
  <div class="brd">  
  <div class="content" style="margin-left: 45px;">
@@ -40,7 +40,7 @@
 
       <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 
-<embed src="folder\video\фвцыуакпе.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="600" height="600"></embed>
+<embed src="video\фвцыуакпе.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="600" height="600"></embed>
      <h3>опубликовано:14.10.24</h3>
      <h2><a target="_blank" href="https://youtube.com/shorts/OzUChEuNb5E?si=OzeEf9VQ8t_oUO-o">посмотри на ютубе</a> </h2>
    </div>
@@ -50,7 +50,7 @@
       <div >
           <a class="notLine" href = "https://signiordel.github.io/SrDeL.io/Humanizator.html">
            <div class="all">
-              <img src="folder/img/mq2.webp" alt="mp2" width="400" height="200">
+              <img src="img/mq2.webp" alt="mp2" width="400" height="200">
                <h2>Хуманизатор</h2>
             </div>
            </a>    
@@ -58,7 +58,7 @@
         <div>
           <a class="notLine" href = "https://signiordel.github.io/SrDeL.io/donopendor.html">
            <div class="all">
-              <img src="folder/img/oar2.webp" alt="mp2" width="400" height="200">
+              <img src="img/oar2.webp" alt="mp2" width="400" height="200">
               <h2>НЕ открывай эту дверь</h2>
             </div>
            </a>    
