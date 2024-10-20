@@ -1,21 +1,135 @@
 <!DOCTYPE html>
-<html lang="ru">
 <head>
+    <link rel="stylesheet" href="style.css">
+    <title>SrDeL-главная</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка видео</title>
-    <script src="script.js"></script>
-</head>
-<body>
-    <h1>Загрузите видео</h1>
-    <form id="videoForm" action="/upload" method="post" enctype="multipart/form-data">
-        <label for="videoTitle">Название видео:</label>
-        <input type="text" id="videoTitle" name="videoTitle" required>
-        <br><br>
-        <label for="videoFile">Выберите видео для загрузки:</label>
-        <input type="file" id="videoFile" name="videoFile" accept="video/*" required>
-        <br><br>
-        <button type="submit">Загрузить видео</button>
-    </form>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    const shakeElement = document.querySelector('.shake');
+
+shakeElement.addEventListener('mouseover', () => {
+    shakeElement.style.animation = 'shake 0.5s';
+});
+
+shakeElement.addEventListener('animationend', () => {
+    shakeElement.style.animation = ''; // Убираем анимацию после завершения
+});
+
+</script>
+
+<body>  
+<div>
+    <img src="img\baner1.jpg" width="200" height="100">
+</div>
+<!-----------------------------АНИМАЦИИ----------------------->  
+    <h1 class="FirstLine">АНИМАЦИИ:</h1>   
+<div class="brd">    
+    <div class="content" style="margin-top: 10px;"> 
+        <div>
+            <a class="notLine"  href = "glitch.html">
+                <img src="img/vvv.webp" alt="mp2" width="390" height="200">
+                <h2 style="margin-left: 90px; color: rgb(255, 255, 255);"> Глюки,глитчи и тд</h2>
+                <h4 style="margin-left: 90px;" >сделано:03.09.24</h4>
+             </a>           
+        </div>   
+        <div >
+            <a class="notLine" href = "Humanizator.html">
+                <img src="img/mq2.webp" alt="mp2" width="400" height="200">
+                <h2 style="margin-left: 90px; color: rgb(255, 255, 255);">Хуманизатор</h2>
+                <h4 style="margin-left: 90px;" >сделано:11.09.24</h4>
+             </a>    
+        </div>
+        <div>
+            <a class="notLine" href = "donopendor.html">
+                <img src="img/oar2.webp" alt="mp2" width="400" height="200">
+                <h2 style="margin-left: 90px; color: rgb(255, 255, 255);">НЕ открывай дверь</h2>
+                <h4 style="margin-left: 90px;" >сделано:15.09.24</h4>
+             </a>           
+        </div> 
+    </div>
+
+    <div class="content">
+        <div>
+            <a class="notLine" href = "5top.html">
+                <img src="img/most.webp" alt="mp2" width="390" height="200">
+                <h2 style="margin-left: 90px; color: rgb(255, 255, 255);"> Лайфаки для карликов</h2>
+                <h4 style="margin-left: 90px;" >сделано:30.08.24</h4>
+             </a>           
+        </div>   
+        <div >
+            <a class="notLine" href = "humannmouse.html">
+                <img src="img/mouse.webp" alt="mp2" width="400" height="200">
+                <h2 style="margin-left: 90px; color: rgb(255, 255, 255);">Человечик и крусор мыши</h2>
+                <h4 style="margin-left: 90px;" >сделано:11.09.24</h4>
+             </a>    
+        </div>
+        <div>
+            <a class="notLine" href = "https://signor-clover.newgrounds.com">
+                <img src="img/sin.webp" alt="mp2" width="400" height="200">
+                <h2 style="margin-left: 90px;" color: rgb(255, 255, 255);">АНИМАЦИЯ</h2>
+                <h5 style="margin-left: 90px;">за которую мне стыдно</h5>
+                <h4 style="margin-left: 90px;" >сделано:06.08.24</h4>
+             </a>           
+        </div> 
+    </div> 
+    <div style="margin-left: 90px;">
+        <a class="notLine" target="_blank" href = "https://www.newgrounds.com/portal/view/928417">
+            <img src="img/flash_928417_card.webp" alt="mp2" width="270" height="150">
+            <h2 style="color: rgb(255, 255, 255)">Party for COOL</h2>
+            <h5>анимация с <a style="color: orange;">newgrounds</a></h5>
+            <h4 style="color: white;">сделано:02.05.24</h4>
+         </a>      
+    </div>       
+</div> 
+
+<!---------------------------------ИГРЫ-------------------------------->
+<h1  class="FirstLine">МОИ ИГРЫ:</h1>
+<h3 style="color: white;margin-left: 10px;">Дальше будет представлен список игр которые я опубликовал на <a target="_blank" href="https://signor-clover.newgrounds.com/games"  style="color: orange;">newgrounds</a></h3>
+<h5 style="color: white;margin-left: 10px;">не волнуйтесь, их не много</h5>
+     <div class="brd">
+        <div class="content"  style="margin-top: 10px;">
+            <div style="margin-left: 90px;">
+                <a class="notLine" target="_blank" href = "https://www.newgrounds.com/portal/view/914597">
+                    <img src="img/space_hero.webp" alt="mp2" width="270" height="150">
+                    <h2 style="color:orange">SPACE HERO</h2>
+                    <h5>я до сих про горжусь этой игрой</h5>
+                    <h4 style="color: white;">сделано:18.01.24</h4>
+                 </a>      
+            </div> 
+            <div style="margin-left: 90px;">
+                <a class="notLine" target="_blank" href = "https://www.newgrounds.com/portal/view/914597">
+                    <img src="img/just_run.webp" alt="mp2" width="270" height="150">
+                    <h2 style="color:white">JUST RUN</h2>
+                    <h5>а это мой первый платформер</h5>
+                    <h4 style="color: white;">сделано:22.01.24</h4>
+                 </a>      
+            </div>  
+            <div style="margin-left: 90px;"></div>
+                <a class="notLine" target="_blank" href = "https://www.newgrounds.com/portal/view/914597">
+                    <img src="img/ng.webp" alt="mp2" width="270" height="150">
+                    <h2 style="color:white">грустно</h2>
+                    <h5>то на что я потратил много времени</h5>
+                    <h5>но я это не закончу</h5>
+                    <h4 style="color: white;">сделано:22.01.24</h4>
+                 </a>      
+            </div>          
+        </div>
+     </div>    
+</div>  
+
+<h1  class="FirstLine" >НОВОСТИ DeL'а</h1>
+<h3 class=underFirstLine>всякие посты и просто бред который со мной произошел</h3>
+<div class="brd">
+    <div class="underFirstLine">
+      <h2>ЗАПУСК САЙТА</h2>
+      <h3>Около недели я бился над тем чтобы найти хостинг</h3>
+      <h3>И наконец это произошло.Сервера мне предоставил GitHub</h3>
+      <h3>На данный момент я перезалил три свои анимации, все они на первой полосе.<br>следующие видео скорее всего будут заливаться в формает swf т.к они гораздо меньше весят</h3>
+      <h3>пока что тут не так много развлечений но скоро грядут перемены!</h3>
+      <a target="_blank" href=https://srdel.neocities.org/>а пока можете посмотреть как сайт выглядел раньше<br>(самая не стабильная версия, я поменял домен а ссылки в коде нет)</a>  
+    </div>    
+</div> 
+
+
+
 </body>
-</html>
