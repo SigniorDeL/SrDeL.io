@@ -38,8 +38,14 @@
 
       <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 
-<embed src="tir po uchetilam.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="300px" height="300px"></embed>
+<embed src="tir po uchetilam v.2.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="300px" height="300px"></embed>
    </div>
+       <div id="reset" style="color: red; cursor: pointer;">Если во время игры возникла ошибка,<em> перезагрузите страницу</em></div>   
+    <script>
+    document.getElementById("reset").addEventListener("click", function() {
+        location.reload(); // Исправлено: убрана лишняя пробел между 'location.' и 'reload()'
+    });
+    </script>
 </div>
 </div>
 </div> 
