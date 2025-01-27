@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+ 
+    <style>
+        .brd {
+            
+            background-color:  rgb(31, 31, 31);
+            width: 300px;
+            height: 600px;
+        }
+        body {
+        background-color: black;
+            color: white;
+        }
+        button {
+            margin-left: 5%;
+            margin-top: 10px;
+        }
+        .video {
+            width: 600px;
+            height: auto;
+            margin-left: 5%;
+        }
+        .content{
+            margin: auto;
+            background-color:  rgb(31, 31, 31);
+            width: 65%;
+        }
+        .word{
+            background-color: rgb(56, 56, 56);;
+        }
+        .ChoosV{
+            margin-right: 7%;;
+            background-color: rgb(56, 56, 56);
+            height: 500px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="margin-left: 17.5%; color: white;">SrDeL</h2>
+    <div class="content">
+        <h2 style="margin-left: 5%; color: white;" id="NameOfVideo">ㅤㅤㅤ</h2>
+      <div style="display: flex;">  
+        <div class="video" >
+            <div>
+                <video id="videoPlayer" width="500" height="500" controls>
+                    <source id="videoSource" src="" type="video/mp4">
+                </video>
+            </div>
+            <button id="shareButton">Поделиться</button>
+            <select id="videoSelect" style="margin-left: 5%;">
+                <option><--Выбери Видео--></option>
+                <option value="video/И Я ДРОЧУ В 430.mp4" data-name="дрочка">дрочка</option>
+                <option value="video/video1.mp4" data-name="hui">hui</option>
+                <option value="video/Безымянный-15.mp4" data-name="pizda">pizda</option>
+                <option value="https://www.newgrounds.com/content/embed.php?id=SRSra" data-name="hellowen">hellowen</option>
+            </select>
+            <button id="play_bth" ><em>play</em></button> 
+        </div>        
+    </div>        
+</div>
+<script>
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoSource = document.getElementById("videoSource");
+    const playButton = document.getElementById("play_bth");
+    const videoSelect = document.getElementById("videoSelect");
+    const NameV = document.getElementById("NameOfVideo");
+    const shareButton = document.getElementById("shareButton"); 
+
+    function openVideo(videoPath, videoName) {
+        videoSource.src = videoPath; 
+        videoPlayer.load(); 
+        videoPlayer.play(); 
+        NameV.textContent = videoName; // Обновляем заголовок видео
+        updateShareLink(videoPath);
+    }
+
+    function updateShareLink(videoPath) {
+        if (videoPath) {
+            const shareURL = window.location.href.split('?')[0] + '?video-path=' + encodeURIComponent(videoPath.split('/').pop());
+            shareButton.setAttribute('data-clipboard-text', shareURL);
+            console.log('Video Path:', videoPath);
+            console.log('Share URL:', shareURL);
+        }
+    }
+
+    playButton.addEventListener("click", () => {
+        const selectedOption = videoSelect.options[videoSelect.selectedIndex];
+        const videoPath = selectedOption.value;
+        const videoName = selectedOption.dataset.name;
+
+        if (videoPath) {
+            openVideo(videoPath, videoName);
+        }
+    });
+
+    document.querySelectorAll(".video-button").forEach(button => {
+        button.innerHTML = button.getAttribute("data-name");
+        button.addEventListener("click", () => {
+            const videoPath = button.getAttribute("data-video-path");
+            const videoName = button.getAttribute("data-name");
+            openVideo(videoPath, videoName);
+        });
+    });
+
+    shareButton.addEventListener('click', () => {
+        const url = shareButton.getAttribute('data-clipboard-text');
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Ссылка на видео скопирована в буфер обмена!');
+        }).catch(err => {
+            alert('Не удалось скопировать ссылку: ' + err);
+        });
+    });
+    
+</script>
+</body>
+
+
+
+</html>
