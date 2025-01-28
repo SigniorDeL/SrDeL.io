@@ -53,44 +53,44 @@
                 <button id="shareButton">Поделиться</button>
                 <select id="videoSelect" style="margin-left: 5%;">
                     <option><--Выбери Видео--></option>
-                    <option value="video/1111.mp4" data-name="дверь" data-id="1">дверь</option>
-                    <option value="video/video.mp4" data-name="с ним что-то не так" data-id="2">с ним что-то не так</option>
-                    <option value="video/хуманизатор.mp4" data-name="хуманизатор" data-id="3">хуманизатор</option>
+                    <option value="video/И Я ДРОЧУ В 430.mp4" data-name="дверь" data-id="1">дверь</option>
+                    <option value="video/video1.mp4" data-name="hui" data-id="2">с ним что-то не так</option>
+                    <option value="video/Безымянный-15.mp4" data-name="хуманизатор" data-id="3">хуманизатор</option>
+                    <option value="https://www.newgrounds.com/content/embed.php?id=SRSra" data-name="hellowen" data-id="4">hellowen</option>
                 </select>
                 <button id="play_bth"><em>play</em></button> 
             </div>        
         </div>        
     </div>
+
     <script>
         const videoPlayer = document.getElementById("videoPlayer");
         const videoSource = document.getElementById("videoSource");
         const playButton = document.getElementById("play_bth");
         const videoSelect = document.getElementById("videoSelect");
         const NameV = document.getElementById("NameOfVideo");
-        const shareButton = document.getElementById("shareButton");
+        const shareButton = document.getElementById("shareButton"); 
 
         function openVideo(videoPath, videoName, videoId) {
             videoSource.src = videoPath; 
             videoPlayer.load(); 
             videoPlayer.play(); 
             NameV.textContent = videoName; // Обновляем заголовок видео
-            updateShareLink(videoPath, videoId);
+            updateShareLink(videoId); // Обновляем ссылку для копирования
         }
 
-        function updateShareLink(videoPath, videoId) {
-            if (videoPath && videoId) {
-                const shareURL = window.location.href.split('?')[0] + '?video-path=' + encodeURIComponent(videoPath.split('/').pop()) + '&video-id=' + videoId;
-                shareButton.setAttribute('data-clipboard-text', shareURL);
-                console.log('Video Path:', videoPath);
-                console.log('Share URL:', shareURL);
-            }
+        function updateShareLink(videoId) {
+            const shareURL = `${window.location.href.split('?')[0]}?video-id=${videoId}`;
+            // Устанавливаем текст ссылки в data-атрибут кнопки
+            shareButton.setAttribute('data-clipboard-text', shareURL);
+            console.log('Share URL:', shareURL);
         }
 
         playButton.addEventListener("click", () => {
             const selectedOption = videoSelect.options[videoSelect.selectedIndex];
             const videoPath = selectedOption.value;
             const videoName = selectedOption.dataset.name;
-            const videoId = selectedOption.dataset.id;
+            const videoId = selectedOption.dataset.id; // Получаем ID видео
 
             if (videoPath) {
                 openVideo(videoPath, videoName, videoId);
@@ -100,6 +100,7 @@
         shareButton.addEventListener('click', () => {
             const url = shareButton.getAttribute('data-clipboard-text');
 
+            // Проверяем, если ссылка существует
             if (url) { 
                 navigator.clipboard.writeText(url).then(() => {
                     alert('Ссылка на видео скопирована в буфер обмена!');
@@ -109,25 +110,29 @@
             } else {
                 alert('Ссылка на видео не доступна для копирования.');
             }
-
         });
 
-// Функция для загрузки видео по ID из URL
-function loadVideoFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const videoPath = urlParams.get('video-path');
-    const videoId = urlParams.get('video-id');
+        // Функция для загрузки видео по ID
+        function loadVideoFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('video-id');
 
-    if (videoPath && videoId) {
-        const option = Array.from(videoSelect.options).find(option => option.dataset.id === videoId);
-        if (option) {
-            openVideo(videoPath, option.dataset.name, videoId);
+            if (videoId) {
+                const videoOption = [...videoSelect.options].find(option => option.dataset.id === videoId);
+
+                if (videoOption) {
+                    const videoPath = videoOption.value;
+                    const videoName = videoOption.dataset.name;
+                    openVideo(videoPath, videoName, videoId);
+                }
+            }
         }
-    }
-}
 
-// При загрузке страницы проверяем URL
-window.onload = loadVideoFromURL;
-</script>
+        // Загружаем видео из URL-параметров при загрузке страницы
+        window.onload = loadVideoFromURL;
+
+    </script>
 </body>
+
+
 
