@@ -1,0 +1,55 @@
+<body>
+
+    <div>
+    <img id="myImage" src="Безымянный-10001.jpg" alt="Моя картинка">
+    </div>
+    <div>
+   <button id="stop">ХАРЭ МИГАТЬ</button>
+   <button id="start">Ладно, мигай</button>
+</div>
+
+    <script>
+    
+    let play = true; // Переменная должна быть определена до её использования
+
+document.getElementById("stop").addEventListener('click', function() {
+    play = false; // Останавливаем смену картинки
+    console.log(play); 
+});
+
+document.getElementById("start").addEventListener('click', function() {
+    play = true; // Запускаем смену картинки
+    console.log(play);
+});
+
+// Массив с путями к картинкам
+const images = [
+    'Безымянный-10002.jpg',
+    'Безымянный-10001.jpg',
+];
+
+// Индекс текущей картинки
+let currentIndex = 0;
+
+// Получаем элемент изображения по его ID
+const imageElement = document.getElementById('myImage');
+
+// Функция смены картинки
+function changeImage() {
+    if (play) { // Проверяем, активна ли смена
+        currentIndex = (currentIndex + 1) % images.length; // Увеличиваем индекс и обнуляем его, если достигли конца массива
+        imageElement.src = images[currentIndex]; // Меняем источник изображения
+    }
+}
+
+// Запускаем функцию смены картинки каждую секунду
+setInterval(changeImage, 500);
+
+document.getElementById('myImage').addEventListener("mouseenter", function() {
+    document.getElementById('myImage').style.cursor = "pointer"; 
+        });
+        document.getElementById('myImage').addEventListener("click", function(){
+            window.open("C:/Users/user/Desktop/%D1%82%D0%B5%D1%81%D1%82/submted.html","_blank")
+        })
+    </script>
+</body>
