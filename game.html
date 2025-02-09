@@ -1,0 +1,68 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <h1 style="margin-left: 4%; margin-top: 3%;" class="text">МИНИ-ИГРЫ</h1>
+        <div style="display: flex; margin-left: 5%; ">
+        
+            <div id="SpcHero" style="display: flex;margin-left: 1.5%; background-color: rgb(63, 63, 63); width: 30%;">
+                <img src="img/GamesIcon.png" width="100px" height="100px" style="margin-top: 7%;margin-left:2% ;">
+                <div>
+                <h3 style="font-family: cambria; margin-left: 3%;">Spsce-Hero</h3>
+                <h4 style="margin-left: 3%;" >Сбивай метеориты, защищая землю</h4>
+            </div>    
+            </div>
+
+            <div id="justRun" style="display: flex;margin-left: 1.5%; background-color: rgb(63, 63, 63); width: 30%;">
+                <img src="img/just_run_img.png" width="100px" height="100px" style="margin-top: 7%;margin-left:2% ;">
+                <div>
+                <h3 style="font-family: cambria; margin-left: 3%;">JUST RUN</h3>
+                <h4 style="margin-left: 3%;" >Доберись из точки А в точку B за самое короткое время</h4>
+            </div>    
+            </div>
+
+            <div id="gamesBTH" style="display: flex;margin-left: 1.5%; background-color: rgb(63, 63, 63); width: 30%;">
+                <img src="https://png.pngtree.com/png-vector/20190420/ourlarge/pngtree-question-mark-vector-icon-png-image_963326.jpg" width="100px" height="100px" style="margin-top: 7%;margin-left:2% ;">
+                <div>
+                <h3 style="font-family: cambria; margin-left: 3%;">СКОРО</h3>
+                <h4 style="margin-left: 3%;" >наверное</h4>
+            </div>    
+            </div>
+        </div>
+    <h2><a href="index.html">Вернуться на главную</a></h2>   
+    </div>   
+  </div>    
+
+<script>
+document.getElementById("SpcHero").addEventListener("mouseenter", function() {
+    document.getElementById("SpcHero").style.backgroundColor = "rgb(198, 180, 88)";
+    document.getElementById("SpcHero").style.cursor = "pointer";
+});
+document.getElementById("SpcHero").addEventListener("mouseleave", function() {
+    document.getElementById("SpcHero").style.backgroundColor = "rgb(63, 63, 63)";
+});
+
+document.getElementById("SpcHero").addEventListener("click",function(){
+    window.open("games/space-hero.html", "_self")
+})
+
+//---------------------------------------------------
+const game2="justRun"
+document.getElementById("justRun").addEventListener("mouseenter", function() {
+    document.getElementById("justRun").style.backgroundColor = "rgb(198, 180, 88)";
+    document.getElementById("justRun").style.cursor = "pointer";
+});
+document.getElementById("justRun").addEventListener("mouseleave", function() {
+    document.getElementById("justRun").style.backgroundColor = "rgb(63, 63, 63)";
+});
+
+document.getElementById("justRun").addEventListener("click",function(){
+    window.open("games/just-run.html","_self")
+})
+</script>
+
+</body>
+</html>

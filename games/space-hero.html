@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SrDeL</title>
+        <style>
+            body{
+                background-color: black;
+            }
+            .content { 
+                color: white;
+            }
+          .notLine {
+            text-decoration: none; /* Убираем подчеркивание */
+        
+         }
+        
+        a{
+            color: rgb(255, 255, 255);
+         }
+         .brd{    
+        border: 10px double white ;
+    } 
+        </style>
+    </head>
+<body>
+<div> 
+    <h2 style="color:white">SPACE_HERO</h2>   
+ <div class="content" >
+
+      <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<embed class="brd" src="swf/game.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="500px" height="500px"></embed>
+   </div>
+</div>
+     <div id="reset" style="color: red; cursor: pointer;">Если во время игры возникла ошибка,<em> перезагрузите страницу</em></div>   
+    <script>
+    document.getElementById("reset").addEventListener("click", function() {
+        location.reload(); // Исправлено: убрана лишняя пробел между 'location.' и 'reload()'
+    });
+    </script>   
+<a href="#" onclick="goMain()">Вернуться на главную</a><br> 
+<a href="#" onclick="goback()">Вернуться к выбору Мини-игр</a>
+<script>
+    function goback() {
+        window.history.back();
+    }
+    
+    function goMain() {
+        window.open("/index.html", "_self"); // Открывает главную страницу в том же окне
+    }
+</script>
+
+</div>
+</div> 
+</div>   
+</body>
+</html>
