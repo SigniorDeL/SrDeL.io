@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
- 
+ <link rel="stylesheet" href="style.css">
     <style>
         .brd {
             
@@ -40,7 +41,7 @@
     </style>
 </head>
 <body>
-    <h2 style="margin-left: 17.5%; color: white;">SrDeL</h2>
+    <h2 style="margin-left: 17.5%; color: rgb(1, 145, 255);background-color: rgb(255, 255, 255);width: 65%;">Check<em style="color: rgb(0, 0, 0);">List</em></h2>
     <div class="content">
         <h2 style="margin-left: 5%; color: white;" id="NameOfVideo">ㅤㅤㅤ</h2>
               <div style="display: flex;">
@@ -53,7 +54,14 @@
             </div>
             <div style="margin-top: 1px;">
                 <iframe src="submit.html"  style="border: 0;" width="400px" height="200px"></iframe>
+            <div id="gamesBTH" style="display: flex;margin-left: 1.5%; background-color: rgb(63, 63, 63);">
+                <img src="img/GamesIcon.png" width="25%" height="25%" style="margin-top: 2.4%;margin-left:2% ;">
+                <div>
+                <h3 style="font-family: cambria; margin-left: 3%;">Мини-игры</h3>
+                <h4 style="margin-left: 3%;" >Сборник нескольких игр написанный на <a target="_blank" href="https://ru.wikipedia.org/wiki/Adobe_Flash">flash</a></h4>
+            </div>    
             </div>
+        </div>
         </div>     
                 <button id="shareButton">Поделиться</button>
                 <select id="videoSelect" style="margin-left: 5%;">
@@ -61,7 +69,7 @@
                     <option value="video/1111.mp4" data-name="дверь" data-id="1">дверь</option>
                     <option value="video/video.mp4" data-name="с ним что-то не так" data-id="2">с ним что-то не так</option>
                     <option value="video/хуманизатор.mp4" data-name="хуманизатор" data-id="3">хуманизатор</option>
-                    <option value="video/Безымянный-13.mp4" data-name="Безымянный-13.mp4" data-id="10">Безымянный-13.mp4</option>
+                    <option value="video/hallowen.mp4" data-name="ХЕЛЛОУИНОВСКИЙ ВЫПУСК" data-id="4">ХЕЛЛОУИНОВСКИЙ ВЫПУСК</option>
                     <option value="video/ЦУАПКЕЬО.mp4" data-name="Советы для карликов" data-id="5">Советы для карликов</option>
                     <option value="video/мышка и человечек.mp4" data-name="мышка и человечек" data-id="6">мышка и человечек</option>
                     <option value="video/И Я ДРОЧУ В 430.mp4" data-name="И Я ДРОЧУ В 4:30" data-id="7">И Я ДРОЧУ В 4:30</option>
@@ -75,6 +83,18 @@
     </div>
 
     <script>
+      document.getElementById("gamesBTH").addEventListener("mouseenter", function() {
+    document.getElementById("gamesBTH").style.backgroundColor = "rgb(198, 180, 88)";
+    document.getElementById('gamesBTH').style.cursor = "pointer";
+});
+
+document.getElementById("gamesBTH").addEventListener("mouseleave", function() {
+    document.getElementById("gamesBTH").style.backgroundColor = "rgb(63, 63, 63)";
+});
+document.getElementById("gamesBTH").addEventListener("click",function(){
+    window.open("game.html","_blank")
+})
+
         const videoPlayer = document.getElementById("videoPlayer");
         const videoSource = document.getElementById("videoSource");
         const playButton = document.getElementById("play_bth");
