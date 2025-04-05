@@ -1,0 +1,505 @@
+<?php
+session_start();
+include('bd.php');
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://watchub.fun/">
+    <meta property="og:title" content="WatcHUB">
+    <meta property="og:description" content="От не профи для не профи">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="http://watchub.fun/news/">
+    <meta name="twitter:title" content="WatcHUB">
+    <meta name="twitter:description" content="Расскажи о себе">
+    <meta name="twitter:image" content="http://watchub.fun/wh.jpg">
+    <title>Board Hub</title>
+    <style>
+        :root {
+            --primary-bg: #02315E;
+            --secondary-bg: #00457E;
+            --text-color: #fff;
+            --accent-blue: #6ab0ff;
+            --accent-light: #a8d1ff;
+            --border-color: #2F70AF;
+            --board-bg: #013f73;
+            --hover-bg: #02579e;
+        }
+        
+        body {
+            background: rgb(0,0,0);
+            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(59,109,255,1) 100%);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            width: 60%;
+        }
+        
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            border: 3px solid var(--border-color);
+            background-color: var(--primary-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .main-nav {
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .search-container {
+            display: flex;
+        }
+        
+        .search-container input {
+            padding: 8px;
+            background: var(--secondary-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            width: 200px;
+        }
+        
+        .search-container button {
+            padding: 8px 12px;
+            background: var(--border-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        .secondary-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .video-link {
+            color: var(--accent-light);
+        }
+        .video-link:hover{
+            color: #ff4a4a;
+        }
+        .blog-link {
+            color: var(--accent-blue);
+        }
+        
+        a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: var(--text-color);
+        }
+        
+        .nav-button a:hover {
+            text-decoration: none;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            flex: 0 0 200px;
+            background-color: var(--primary-bg);
+        }
+        
+        .main-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--primary-bg);
+            padding: 3%;
+        }
+        
+        .board-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+            justify-content: center;
+            padding: 0 10px;
+        }
+        
+        .board-link {
+            padding: 8px 16px;
+            background: var(--secondary-bg);
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        
+        .board-link:hover {
+            background: var(--hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .active-board {
+            background: var(--accent-blue);
+            font-weight: bold;
+        }
+        
+        .board-section {
+            background-color: var(--board-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .board-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--accent-light);
+            text-align: center;
+        }
+        
+        .post {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .post:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-right: 10px;
+        }
+        
+        .post-content {
+            flex: 1;
+        }
+        
+        .username {
+            color: var(--accent-light);
+            font-weight: bold;
+        }
+        
+        .post-title {
+            margin: 5px 0;
+            color: var(--text-color);
+        }
+        
+        .signin-link {
+            color: var(--accent-light);
+        }
+        
+        .signin-link:hover {
+            color: white;
+        }
+        
+        hr {
+            border-color: var(--border-color);
+            margin: 15px 0;
+        }
+        
+        .main-title {
+            color: var(--accent-light);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .columns-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                width: 90%;
+                padding: 10px;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                justify-content: center;
+            }
+            
+            .board-links {
+                gap: 8px;
+            }
+            
+            .board-link {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .columns-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="main-nav">
+            <div style="display: flex;">
+                    <img width="30%" src="wh_logo_an.gif" alt="WatchHub Logo">
+                    <div class="nav-links" style="display: flex; align-items: center; gap: 15px;">
+                        <div class="search-container" style="display: flex; margin-right: 10px;">
+                            <input type="text" placeholder="поиск..." style="padding: 8px;">
+                            <button style="padding: 8px 12px;">🔍</button>
+                        </div>
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[<a class="video-link" href="animationhub/" target="_parent">ВИДЕО</a>]</h4>
+                        </div>
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[ <a class="blog-link" href="news/" target="_parent">БЛОГ</a> ]</h4>
+                        </div>
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[<a class="signin-link" href="checkhubs.php" target="_parent"><span>Войти/Регистрация</span></a>]</h4>
+                        </div>
+                    </div>
+            </div>
+            <nav class="secondary-nav">
+                <span>[<a href="http://watchub.fun/news/upload.php" target="_parent">Сделать пост</a>]</span>
+                <span>[<a href="games" target="_parent">Мини-игры</a>]</span>
+                <span>[<a href="profiles/users.php" target="_parent">Пользователи</a>]</span>
+                <span>[<a href="pages/about.php" target="_parent">О сайте</a>]</span>
+                <span>[<a href="pages/say.php" target="_parent">Поддержка</a>]</span>
+                <span>[<a href="chat/" target="_parent">Чат</a>]</span>
+                <span>[<a href="http://watchub.fun/animationhub/upload.php" target="_parent">Опубликовать видео</a>]</span>
+            </nav>
+            </div>
+        </header>
+        
+        <main class="content">
+        
+          <div style="    
+          background-color: var(--primary-bg);
+          padding: 15px;
+          margin-bottom: 20px;">  
+            <div class="board-links">
+                <a href="?board=all" class="board-link active-board">Все</a>
+                <a href="?board=b" class="board-link">Блог/новость</a>
+                <a href="?board=g" class="board-link">Игры</a>
+                <a href="?board=bo" class="board-link">Книги</a>
+                <a href="?board=f" class="board-link">Фильмы</a>
+                <a href="?board=a" class="board-link">Аниме</a>
+                <a href="?board=t" class="board-link">Бред</a>
+                <a href="?board=m" class="board-link">Мемы</a>
+                <a href="?board=c" class="board-link">Машины</a>
+                <a href="?board=h" class="board-link">Хорни контент</a>
+                <a href="?board=p" class="board-link">Политика</a>
+                <a href="?board=an" class="board-link">Животные</a>
+                <a href="?board=food" class="board-link">Еда</a>
+                <a href="?board=place" class="board-link">Природа/пейзажи</a>
+                <a href="?board=poster" class="board-link">Постеры</a>
+            </div>
+           </div> 
+            <div class="columns-container">
+                <div class="column">
+                    <div class="board-section">
+                        <div class="board-title">Последние посты</div>
+                        <hr>
+                        <?php
+                        $newsList = [];
+                        try {
+                            $sql = "SELECT 
+                                    n.*, 
+                                    u.id AS user_id, 
+                                    u.login AS user_login,
+                                    u.avatar AS user_avatar
+                                    FROM news n 
+                                    JOIN users u ON n.user_id = u.id
+                                    ORDER BY n.created_at DESC LIMIT 5";
+                            
+                            $stmt = $pdo->query($sql);
+                            $newsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        } catch (PDOException $e) {
+                            echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
+                        }
+                        
+                        foreach ($newsList as $news): ?>
+                            <div class="post" data-id="<?= htmlspecialchars($news['id']) ?>">
+                                <div class="post-header">
+                                    <?php if (!empty($news['user_avatar'])): ?>
+                                        <img class="avatar" src="../profiles/<?= htmlspecialchars($news['user_avatar']) ?>" alt="Аватар">
+                                    <?php else: ?>
+                                        <img class="avatar" src="../profiles/DefaultAvatar.jpg" alt="Аватар">
+                                    <?php endif; ?>
+                                    
+                                    <div class="post-content">
+                                        <div class="username">
+                                            <a href="../profiles/index.php?id=<?= htmlspecialchars($news['user_id']) ?>">
+                                                <?= htmlspecialchars($news['user_login']) ?>
+                                            </a>
+                                            <span style="color: var(--accent-light); font-size: 0.9em;">сказал:</span>
+                                        </div>
+                                        <div class="post-title"><?= htmlspecialchars($news['title']) ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="board-section">
+                        <div class="board-title">Блоги</div>
+                        <hr>
+                        <?php
+                        $newsList = [];
+                        try {
+                            $sql = "SELECT 
+                                    n.*, 
+                                    u.id AS user_id, 
+                                    u.login AS user_login,
+                                    u.avatar AS user_avatar
+                                    FROM news n 
+                                    JOIN users u ON n.user_id = u.id
+                                    WHERE board='b' 
+                                    ORDER BY n.created_at DESC LIMIT 5";
+                            
+                            $stmt = $pdo->query($sql);
+                            $newsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        } catch (PDOException $e) {
+                            echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
+                        }
+                        
+                        foreach ($newsList as $news): ?>
+                            <div class="post" data-id="<?= htmlspecialchars($news['id']) ?>">
+                                <div class="post-header">
+                                    <?php if (!empty($news['user_avatar'])): ?>
+                                        <img class="avatar" src="../profiles/<?= htmlspecialchars($news['user_avatar']) ?>" alt="Аватар">
+                                    <?php else: ?>
+                                        <img class="avatar" src="../profiles/DefaultAvatar.jpg" alt="Аватар">
+                                    <?php endif; ?>
+                                    
+                                    <div class="post-content">
+                                        <div class="username">
+                                            <a href="../profiles/index.php?id=<?= htmlspecialchars($news['user_id']) ?>">
+                                                <?= htmlspecialchars($news['user_login']) ?>
+                                            </a>
+                                            <span style="color: var(--accent-light); font-size: 0.9em;">сказал:</span>
+                                        </div>
+                                        <div class="post-title"><?= htmlspecialchars($news['title']) ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="board-section">
+                        <div class="board-title">Мемы</div>
+                        <hr>
+                        <?php
+                        $newsList = [];
+                        try {
+                            $sql = "SELECT 
+                                    n.*, 
+                                    u.id AS user_id, 
+                                    u.login AS user_login,
+                                    u.avatar AS user_avatar
+                                    FROM news n 
+                                    JOIN users u ON n.user_id = u.id
+                                    WHERE board='m' 
+                                    ORDER BY n.created_at DESC LIMIT 5";
+                            
+                            $stmt = $pdo->query($sql);
+                            $newsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        } catch (PDOException $e) {
+                            echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
+                        }
+                        
+                        foreach ($newsList as $news): ?>
+                            <div class="post" data-id="<?= htmlspecialchars($news['id']) ?>">
+                                <div class="post-header">
+                                    <?php if (!empty($news['user_avatar'])): ?>
+                                        <img class="avatar" src="../profiles/<?= htmlspecialchars($news['user_avatar']) ?>" alt="Аватар">
+                                    <?php else: ?>
+                                        <img class="avatar" src="../profiles/DefaultAvatar.jpg" alt="Аватар">
+                                    <?php endif; ?>
+                                    
+                                    <div class="post-content">
+                                        <div class="username">
+                                            <a href="../profiles/index.php?id=<?= htmlspecialchars($news['user_id']) ?>">
+                                                <?= htmlspecialchars($news['user_login']) ?>
+                                            </a>
+                                            <span style="color: var(--accent-light); font-size: 0.9em;">сказал:</span>
+                                        </div>
+                                        <div class="post-title"><?= htmlspecialchars($news['title']) ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+    </div>
+    
+    <script>
+        document.querySelectorAll('.post').forEach(post => {
+            post.addEventListener('click', function() {
+                const postId = this.getAttribute('data-id');
+                window.location.href = 'comments.php?id=' + postId;
+            });
+        });
+    </script>
+</body>
+</html>
