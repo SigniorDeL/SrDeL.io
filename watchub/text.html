@@ -1,0 +1,104 @@
+<div class="news-container" style="display:flex;">
+        <div class="b" style="background-color:#013f73">  
+        <span > 
+        Последние посты
+        </span>
+        <hr>
+            <?php
+            // Получаем список новостей из базы данных
+            $newsList = [];
+            try {
+                $sql = "SELECT 
+                        n.*, 
+                        u.id AS user_id, 
+                        u.login AS user_login,
+                        u.email AS user_email,
+                        u.avatar AS user_avatar,
+                        u.lvl AS user_level
+                        FROM news n 
+                        JOIN users u ON n.user_id = u.id
+                        ORDER BY n.created_at DESC LIMIT 10";
+                
+                $stmt = $pdo->query($sql);
+                $newsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
+            }
+
+            $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+            // Вывод новостей
+            foreach ($newsList as $news): ?>
+            
+          <div class="post"  data-id="<?= htmlspecialchars($news['id']) ?>">
+                    <div value="<?= htmlspecialchars($news['id']) ?>"class="post-header">
+                        <?php if (!empty($news['user_avatar'])): ?>
+                            <img class="avatar" src="../profiles/<?= htmlspecialchars($news['user_avatar']) ?>" alt="Аватар пользователя">
+                        <?php else: ?>
+                            <img class="avatar" src="../profiles/DefaultAvatar.jpg" alt="Аватар пользователя">
+                        <?php endif; ?>
+                        
+                        <div style="margin-left:3%">
+                            <em>
+                               <a href="../profiles/index.php?id=<?= htmlspecialchars($news['user_id']) ?>"><?= htmlspecialchars($news['user_login']) ?></a>
+                           <code> сказал:</code></em>
+                            <br><?= htmlspecialchars($news['title']) ?>
+                            
+                        </div>
+                    </div>
+</div>
+            <?php endforeach; ?>
+            </div>
+            
+            <div class="b"style="margin-left:5%;background-color:#013f73">
+            <span>     
+            Последние Мемы
+            </span>
+            <hr>
+<?php
+// Получаем список новостей из базы данных
+$newsList = [];
+try {
+    $sql = "SELECT 
+            n.*, 
+            u.id AS user_id, 
+            u.login AS user_login,
+            u.email AS user_email,
+            u.avatar AS user_avatar,
+            u.lvl AS user_level
+            FROM news n 
+            JOIN users u ON n.user_id = u.id
+           WHERE board='m' ORDER BY n.created_at DESC LIMIT 10";
+    
+    $stmt = $pdo->query($sql);
+    $newsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Ошибка базы данных: " . htmlspecialchars($e->getMessage());
+}
+
+$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+?>
+
+<!-- Вывод новостей -->
+<?php foreach ($newsList as $news): ?>
+    <div class="post" data-id="<?= htmlspecialchars($news['id']) ?>">
+        <div class="post-header">
+            <?php if (!empty($news['user_avatar'])): ?>
+                <img class="avatar" src="../profiles/<?= htmlspecialchars($news['user_avatar']) ?>" alt="Аватар пользователя">
+            <?php else: ?>
+                <img class="avatar" src="../profiles/DefaultAvatar.jpg" alt="Аватар пользователя">
+            <?php endif; ?>
+            
+            <div style="margin-left:3%">
+                <em>
+                    <a href="../profiles/index.php?id=<?= htmlspecialchars($news['user_id']) ?>"><?= htmlspecialchars($news['user_login']) ?></a>
+                    <code> сказал:</code>
+                </em>
+                <br><?= htmlspecialchars($news['title']) ?>
+            </div>
+        </div>
+    </div>  
+<?php endforeach; ?>
+            </div>
+       </div>     
+</body>
