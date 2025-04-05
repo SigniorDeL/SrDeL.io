@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WatchHub</title>
+    <style>
+        :root {
+            --primary-bg: #000;
+            --secondary-bg: #222;
+            --text-color: #fff;
+            --accent-red: #ff4a4a;
+            --accent-blue: #3d3dff;
+            --accent-gold: gold;
+            --border-color: #333;
+        }
+        
+        body {
+            background: rgb(0,0,0);
+background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,0,0,1) 100%);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            width: 60%;
+        }
+        
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            border: 3px solid var(--border-color);
+            background-color: #000;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .main-nav {
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .search-container {
+            display: flex;
+        }
+        
+        .search-container input {
+            padding: 8px;
+            background: var(--secondary-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            width: 200px;
+        }
+        
+        .search-container button {
+            padding: 8px 12px;
+            background: var(--border-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        .secondary-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+      
+        .video-link {
+            color: var(--accent-red);
+        }
+        
+        .blog-link {
+            color: var(--accent-blue);
+        }
+    
+        
+        a {
+            color: #aaa;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: var(--text-color);
+        }
+        
+        .nav-button a:hover {
+            text-decoration: none;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            flex: 0 0 200px;
+            background-color: #000;
+        }
+        
+        .main-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: #000;
+            padding: 3%;
+        }
+        
+        .featured-section {
+            background-color: #662d2d;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .featured-section h2 {
+            text-decoration: underline;
+            padding: 10px 0;
+            margin: 0;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 15px 0;
+        }
+        
+        .video-card {
+            padding: 10px;
+        }
+        
+        .video-card a {
+            color: var(--text-color);
+        }
+        
+        .promo-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .promo-images img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+        
+        hr {
+            border-color: var(--border-color);
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                align-items: center;
+                background-color: #000;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                order: 2;
+                margin-top: 20px;
+            }
+            
+            .secondary-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        .signin-link{
+            color:rgb(255, 237, 123);
+        }
+        .signin-link:hover{
+            color:white;
+           
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="main-nav">
+            <div style="display: flex;">
+          
+                    <img width="30%" src="wh_logo_an.gif" alt="WatchHub Logo">
+                
+                
+                    <div class="nav-links" style="display: flex; align-items: center; gap: 15px;">
+                        <div class="search-container" style="display: flex; margin-right: 10px;">
+                            <input type="text" placeholder="поиск..." style="padding: 8px;">
+                            <button style="padding: 8px 12px;">🔍</button>
+                        </div>
+                        
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[ <a class="video-link" href="animationhub/" target="_parent">ВИДЕО</a> ]</h4>
+                        </div>
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[ <a class="blog-link" href="news/" target="_parent">ПОСТЫ</a> ]</h4>
+                        </div>
+                        <div class="nav-button" style="white-space: nowrap;">
+                            <h4 style="margin: 0;">[<a class="signin-link" href="checkhubs.php" target="_parent"><span>Войти/Регистрация</span></a>]</h4>
+                        </div>
+                    </div>
+            </div>
+            
+            <nav class="secondary-nav">
+                <span>[<a href="http://watchub.fun/news/upload.php" target="_parent">Сделать пост</a>]</span>
+                <span>[<a href="games" target="_parent">Мини-игры</a>]</span>
+                <span>[<a href="profiles/users.php" target="_parent">Пользователи</a>]</span>
+                <span>[<a href="pages/about.php" target="_parent">О сайте</a>]</span>
+                <span>[<a href="pages/say.php" target="_parent">Поддержка</a>]</span>
+                <span>[<a href="chat/" target="_parent">Чат</a>]</span>
+                <span>[<a href="http://watchub.fun/animationhub/upload.php" target="_parent">Опубликовать видео</a>]</span>
+            </nav>
+            </div>
+        </header>
+        
+        <main class="content">
+            <aside class="sidebar">
+                <style>
+                    .last-video {
+                        margin-left: 10%;
+                    }
+                    
+                    .last-video ol {
+                        padding: 0;
+                        margin: 0;
+                        list-style-type: decimal; /* Сохраняем нумерацию */
+                        list-style-position: inside; /* Номера внутри блока */
+                    }
+                    
+                    .last-video li {
+                        border-bottom: 1px solid #333;
+                        padding: 8px 0 8px 5px; /* Добавляем отступ слева для номеров */
+                    }
+                    
+                    .last-video li:last-child {
+                        border-bottom: none;
+                    }
+                    
+                    .last-video a {
+                        text-decoration: none;
+                        color: inherit;
+                        transition: color 0.2s ease;
+                        margin-left: -5px; /* Компенсируем отступ для выравнивания текста */
+                    }
+                    
+                    .last-video a:hover {
+                        color: red !important;
+                    }
+                </style>
+                
+                <div class="last-video">
+                    <h3>Последние Видео</h3>
+                    <ol>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                        <li><a href="link_to_video1">video1</a></li>
+                        <li><a href="link_to_video2">video2</a></li>
+                        <li><a href="link_to_video3">video3</a></li>
+                        <li><a href="link_to_video4">video4</a></li>
+                        <li><a href="link_to_video5">video5</a></li>
+                    </ol>
+                </div>           
+            </aside>
+            
+            <section class="main-content">
+                <style>
+                    .video{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        cursor: pointer;
+                    }
+                    .video:hover{
+                        transform: translateY(-2px);
+                        background-color: #333;
+                       h3{
+                        color: #ff4a4a;
+                       }
+                       small{
+                        color:gold
+                       }
+                       
+                    }
+
+                    a{
+                        color:#ff4a4a
+                    }
+                </style>
+                <table>
+                    <tr>
+                    <center>
+                    <tr style="text-align: center;"><h1 style="color: goldenrod;">Лучшие Анимации</h1></tr>
+                    </center>
+
+                    <tr style="display: flex;">
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 1</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+                        
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%"style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 2</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 3</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+                    </tr>
+
+
+                    <tr style="display: flex; margin-top: 3%;">
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 1</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+                        
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%"style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 2</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 3</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+                    </tr>
+</tr>
+
+                </table>
+
+                 <table>
+                    <tr>
+                    <center>
+                    <tr style="text-align: center;"><h1 style="color: goldenrod;">Лучшие Видео</h1></tr>
+                    </center>
+
+                    <tr style="display: flex;">
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 1</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+                        
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%"style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 2</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 3</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+                    </tr>
+
+
+                    <tr style="display: flex; margin-top: 3%;">
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 1</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+                        
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%"style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 2</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+
+                        <td class="video">
+                            <a>
+                            <div style="    display: flex;
+                            align-items: center;
+                            gap: 10px;">
+                                <img src="mini wh logo.png" alt="обложка" width="50%" style="border:4px solid white;">
+                                <div>
+                                    <h3 style="margin: 0;">Video 3</h3>
+                                    <p style="margin: 0;"><small>Оценка: 3.5</small></p>
+                                </div>
+                            </div>
+                            </a>
+                        </td>
+
+                    </tr>
+</tr>
+                </table>
+                
+
+
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding-right: 20px;">
+                            <div style="color: #ff4a4a;">
+                                <h2 style="margin-top: 0; border-bottom: 2px solid #ff4a4a; padding-bottom: 5px;">Анимации</h2>
+                                <ol style="padding-left: 20px; margin: 0;">
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video1" style="color: inherit; text-decoration: none; transition: color 0.2s;">video1</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video2" style="color: inherit; text-decoration: none; transition: color 0.2s;">video2</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video3" style="color: inherit; text-decoration: none; transition: color 0.2s;">video3</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video4" style="color: inherit; text-decoration: none; transition: color 0.2s;">video4</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video5" style="color: inherit; text-decoration: none; transition: color 0.2s;">video5</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video1" style="color: inherit; text-decoration: none; transition: color 0.2s;">video1</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video2" style="color: inherit; text-decoration: none; transition: color 0.2s;">video2</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video3" style="color: inherit; text-decoration: none; transition: color 0.2s;">video3</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video4" style="color: inherit; text-decoration: none; transition: color 0.2s;">video4</a>
+                                    </li>
+                                    <li style="padding: 5px 0;">
+                                        <a href="link_to_video5" style="color: inherit; text-decoration: none; transition: color 0.2s;">video5</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </td>
+                        
+                        <td style="width: 50%; vertical-align: top; padding-left: 20px;">
+                            <div style="color: #4a7aff;">
+                                <h2 style="margin-top: 0; border-bottom: 2px solid #4a7aff; padding-bottom: 5px;">Видео</h2>
+                                <ol style="padding-left: 20px; margin: 0;">
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video1" style="color: inherit; text-decoration: none; transition: color 0.2s;">video1</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video2" style="color: inherit; text-decoration: none; transition: color 0.2s;">video2</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video3" style="color: inherit; text-decoration: none; transition: color 0.2s;">video3</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video4" style="color: inherit; text-decoration: none; transition: color 0.2s;">video4</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video5" style="color: inherit; text-decoration: none; transition: color 0.2s;">video5</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video1" style="color: inherit; text-decoration: none; transition: color 0.2s;">video1</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video2" style="color: inherit; text-decoration: none; transition: color 0.2s;">video2</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video3" style="color: inherit; text-decoration: none; transition: color 0.2s;">video3</a>
+                                    </li>
+                                    <li style="padding: 5px 0; border-bottom: 1px dashed #333;">
+                                        <a href="link_to_video4" style="color: inherit; text-decoration: none; transition: color 0.2s;">video4</a>
+                                    </li>
+                                    <li style="padding: 5px 0;">
+                                        <a href="link_to_video5" style="color: inherit; text-decoration: none; transition: color 0.2s;">video5</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <style>
+                    a:hover {
+                        color: white !important;
+                        text-decoration: underline !important;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        table, tr, td {
+                            display: block;
+                            width: 100% !important;
+                        }
+                        
+                        td {
+                            padding: 0 !important;
+                            margin-bottom: 20px;
+                        }
+                    }
+                </style>
+                    </section>
+                    </main>
+                </main>
+            
+                <footer style="background-color: #000; margin-top: 4%; padding: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="padding: 10px; vertical-align: top; width: 50%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="http://watchub.fun/news/upload.php" target="_parent" style="color: #aaa; text-decoration: none;">Сделать пост</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="games" target="_parent" style="color: #aaa; text-decoration: none;">Мини-игры</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="profiles/users.php" target="_parent" style="color: #aaa; text-decoration: none;">Пользователи</a>]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="pages/about.php" target="_parent" style="color: #aaa; text-decoration: none;">О сайте</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="pages/say.php" target="_parent" style="color: #aaa; text-decoration: none;">Поддержка</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="chat/" target="_parent" style="color: #aaa; text-decoration: none;">Чат</a>]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="padding: 5px 10px; text-align: center;">
+                                            [<a href="http://watchub.fun/animationhub/upload.php" target="_parent" style="color: #aaa; text-decoration: none;">Опубликовать видео</a>]
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="padding: 10px; vertical-align: top; width: 50%;">
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="index." target="_parent" style="color: #aaa; text-decoration: none;">Главная</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="games" target="_parent" style="color: #aaa; text-decoration: none;">Мини-игры</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="profiles/users.php" target="_parent" style="color: #aaa; text-decoration: none;">Пользователи</a>]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="pages/about.php" target="_parent" style="color: #aaa; text-decoration: none;">О сайте</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="pages/say.php" target="_parent" style="color: #aaa; text-decoration: none;">Поддержка</a>]
+                                        </td>
+                                        <td style="padding: 5px 10px; text-align: center;">
+                                            [<a href="chat/" target="_parent" style="color: #aaa; text-decoration: none;">Чат</a>]
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </footer>
+                
+                <style>
+                    footer a:hover {
+                        color: white !important;
+                        text-decoration: underline !important;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        footer table, footer tr, footer td {
+                            display: block;
+                            width: 100% !important;
+                        }
+                        
+                        footer td {
+                            padding: 5px 0 !important;
+                        }
+                    }
+                </style>
+</body>
+</html>
